@@ -1,0 +1,10 @@
+
+public class mainserver21F21919 
+{
+    public static void main(String args[])
+    {
+        server21F21919 sv = new server21F21919();
+        Thread tr = new Thread(sv);
+        t.start();
+    }     
+}
