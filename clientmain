@@ -1,0 +1,9 @@
+public class mainclient21F21919 
+{
+    public static void main(String args[])
+    {
+        client21F21919 cl = new client21F21919();
+        Thread tr = new Thread(cl);
+        tr.start();
+    }        
+}
