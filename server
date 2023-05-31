@@ -1,0 +1,60 @@
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+
+public class server21F21919 implements Runnable
+{
+    public void run()
+    {
+        try
+        {
+        String host = "jdbc:derby://localhost:1527/Beverage";
+        String usn = "Alla";
+        String pswd = "21F21919";
+        Connection cn = DriverManager.getConnection(host,usn,pswd);
+        ServerSocket ssk = new ServerSocket(8000);
+        System.out.println("Connection is Ready");
+        
+        while(true)
+        {
+            Socket sk = ssk.accept();
+            
+            DataInputStream di = new DataInputStream(sk.getInputStream());
+            int bc = di.readInt();
+            int nc =di.readInt();
+            System.out.println("Beverage code: " + bc);
+            System.out.println("Number of cups: " + nc);
+            
+            if(bc==1)
+                System.out.println("Sales = " + (sa = nc * 0.1));
+            else if(bc==2)
+                System.out.println("Sales = " + (sa = nc * 1));
+            else if(bc==3)
+                System.out.println("Sales = " + (sa = nc * 0.15));
+            else if(bc==4)
+                System.out.println("Sales = " + (sa = nc * 1.4));
+            else if(bc==5)
+                System.out.println("Sales = " + (sa = nc * 0.2));
+            else if(bc==6)
+                System.out.println("Sales = " + (sa = nc * 0.3));
+            else
+                System.out.println("This code not allowed");
+            
+            
+            DataOutputStream do = new DataOutputStream(sk.getOutputStream());
+            do.writeDouble(sa);
+            
+            
+        }    
+            
+        }
+        catch(Excwption e)
+        {
+            System.out.println(e);
+        }
+    }        
+}
